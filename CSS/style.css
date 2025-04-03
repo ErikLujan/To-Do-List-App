@@ -1,0 +1,254 @@
+/* Variables para colores personalizados */
+:root{
+    --primary-color: #e5e5e5;
+    --secondary-color: #9a9a9a;
+    --accent-color: #00d5ff;
+    --accent-color-2: #068ba5;
+    --text-color: #0c0c0c;
+    --text-color-2: white;
+    --size: 80px;
+}
+
+/* Ajustes generales */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16pt;
+    color: (var(--text-color));
+}
+
+body {
+    min-height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    --color: #add8e6;
+
+    /* Custom background */
+    background: #f1f1f1;
+    background-image: linear-gradient(
+        90deg,
+        transparent 50px,
+        #ffb4b8 50px,
+        #ffb4b8 52px,
+        transparent 52px
+        ),
+        linear-gradient(#e1e1e1 0.1em, transparent 0.1em);
+    background-size: 100% 30px;
+}
+
+h1 {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent-color);
+}
+
+/* Contenido Principal */
+.main-container {
+    border: solid;
+    width: 520px;
+    min-height: 496px;
+    border: none;
+    z-index: 1;
+    background: linear-gradient(to top, rgb(0, 0, 0, 0.15), rgb(255, 255, 255, 0.15));
+    border-radius: 12px;
+    backdrop-filter: blur(1px);
+    padding: 20px;
+}
+
+.wrapper {
+    width: 700px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#todo-input {
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 500px;
+    background: none;
+    border: 2px solid var(--secondary-color);
+    border-radius: 1000px;
+    font: inherit;
+    font-style: italic;
+    color: var(--text-color);
+    caret-color: var(--accent-color);
+}
+
+#todo-input:focus {
+    outline: none;
+}
+
+#todo-input::placeholder {
+    color: var(--secondary-color);
+    opacity: 0.8;
+}
+
+form {
+    position: relative;
+    display: flex;
+}
+
+#add-button {
+    top: 0;
+    right: 0;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    border-radius: 500px;
+    padding: 0 30px;
+    font-family: inherit;
+    font: inherit;
+    position: absolute;
+    font-weight: 600;
+    overflow: hidden;
+    background: var(--accent-color-2);
+    color: var(--text-color-2);
+}
+
+#add-button span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+}
+
+#add-button:hover span {
+    color: var(--text-color);
+}
+
+#add-button::before, #add-button::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#add-button::before {
+    content: "";
+    color: var(--text-color-2);
+    background: var(--accent-color);
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+#add-button:hover::before {
+    transform: translate3d(100%, 0, 0);
+}
+
+.todo {
+    margin-bottom: 10px;
+    padding: 0 16px;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.todo .todo-text {
+    padding: 15px;
+    color: var(--text-color);
+    padding-right: 0;
+    flex-grow: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.delete-button {
+    padding: 3px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.delete-button svg {
+    transition: 200ms ease;
+}
+
+.delete-button:hover svg {
+    fill: #00c3ff;
+}
+
+.lock-button {
+    padding: 3px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lock-button svg {
+    transition: 200ms ease;
+}
+
+.lock-button:hover svg {
+    fill: #00c3ff
+}
+
+.custom-checkbox {
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked ~ .custom-checkbox {
+    background-color: var(--accent-color);
+}
+
+input[type="checkbox"]:checked ~ .custom-checkbox svg{
+    fill: var(--primary-color);
+}
+
+input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+@media(max-width: 500px) {
+    html {
+        font-size: 12pt;
+    }
+    #add-button {
+        position: unset;
+        width: 100%;
+        margin: 10px;
+        padding: 15px;
+        height: auto;
+    }
+    h1 {
+        margin-top: 50px;
+        font-size: 15vw;
+    }
+}
